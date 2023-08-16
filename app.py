@@ -28,8 +28,6 @@ with st.sidebar:
     st.write('')
 
 
-load_dotenv()
-
 
 
 def main():
