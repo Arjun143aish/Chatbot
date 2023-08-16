@@ -80,7 +80,7 @@ def main():
 
                 if query:
                     docs = VectorStore.similarity_search(query=query,k=3)
-                    llm = OpenAI(model_name='gpt-3.5-turbo-0613',api_key = os.environ.get('OPENAI_API_KEY'))
+                    llm = OpenAI(model_name='gpt-3.5-turbo-0613')
                     chain = load_qa_chain(llm =llm,chain_type='stuff')
                     with get_openai_callback()as cb:
                         response = chain.run(input_documents = docs,question = query)
