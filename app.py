@@ -28,8 +28,6 @@ with st.sidebar:
     st.write('')
 
 
-load_dotenv()
-
 def main():
     st.header("Chat with One or more file's 💬")
 
@@ -79,7 +77,8 @@ def main():
 
                 if query:
                     docs = VectorStore.similarity_search(query=query,k=3)
-                    llm = OpenAI(model_name='gpt-3.5-turbo-0613')
+                    API_KEY = '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'
+                    llm = OpenAI(model_name='gpt-3.5-turbo-0613',openai_api_key=API_KEY)
                     chain = load_qa_chain(llm =llm,chain_type='stuff')
                     with get_openai_callback()as cb:
                         response = chain.run(input_documents = docs,question = query)
