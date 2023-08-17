@@ -11,6 +11,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.callbacks import get_openai_callback
 import os
 
+load_dotenv()
 
 # Sidebar contents
 with st.sidebar:
@@ -77,8 +78,7 @@ def main():
 
                 if query:
                     docs = VectorStore.similarity_search(query=query,k=3)
-                    API_KEY = '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'
-                    llm = OpenAI(model_name='gpt-3.5-turbo-0613',openai_api_key='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')
+                    llm = OpenAI(model_name='gpt-3.5-turbo-0613')
                     chain = load_qa_chain(llm =llm,chain_type='stuff')
                     with get_openai_callback()as cb:
                         response = chain.run(input_documents = docs,question = query)
